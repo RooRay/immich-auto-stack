@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+## this is all i changed
+from dotenv import load_dotenv
+load_dotenv()
+## this concludes my changes, other than line 231
+
 import logging, sys
 from itertools import groupby
 import json
@@ -222,7 +227,8 @@ def main():
     children_id = []
     
     if skip_previous:
-      children_id = [x['id'] for x in stack[1:] if x['stackCount'] == None ]
+      ## oh yeah also fix whatever this bug is
+      children_id = [x['id'] for x in stack[1:] if x.get('stackCount') is None ]
       
       if len(children_id) == 0:
         logger.info(f'{i}/{len(stacks)} Key: {key} SKIP! No new children!')
